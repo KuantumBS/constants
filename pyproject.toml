@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools","tox","distutils","distutils.core","pytest","functools","unittest","logging","warnings","configparser"]
+requires = ["setuptools","distutils","distutils.core","functools","configparser"]
 build-backend = "setuptools.build_meta"
 
 [tool.cibuildwheel]
