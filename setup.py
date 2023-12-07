@@ -12,10 +12,7 @@ setup(
     py_modules=["constants"],
     license="BSD",
     install_requires=[
-        "tox",
-        "pytest",
-        "functools",
-        "configparser",
+        "tox"
     ],
     classifiers=[
         "Development Status :: 4 - Beta",
