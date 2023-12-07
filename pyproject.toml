@@ -1,3 +1,65 @@
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
+
+[tool.cibuildwheel]
+manylinux-x86_64-image = "manylinux2014"
+manylinux-i686-image = "manylinux2014"
+skip = "pp* cp36* cp37* *musllinux*"
+test-skip = "cp310-win32 cp310-manylinux_i686 cp311-win32 cp311-manylinux_i686"
+#test-command = "python {project}/tools/verify_wheels.py"
+# We need to use pre-built versions of Numpy and Scipy in the tests; they have a
+# tendency to crash if they're installed from source by `pip install`, and since
+# Numpy 1.22 there are no i686 wheels, so we force pip to use older ones without
+# restricting any dependencies that Numpy and Scipy might have.
+#before-test = "pip install --only-binary=numpy,scipy numpy scipy"
+
+[tool.cibuildwheel.linux]
+before-all = "yum install -y openblas-devel"
+
+[tool.cibuildwheel.windows]
+environment = { CMAKE_GENERATOR = "Visual Studio 16 2019"}
+
+[[tool.cibuildwheel.overrides]]
+select = "cp3{8,9,10,11,12}-manylinux_i686"
+#before-all = "yum install -y wget && bash {project}/tools/install_openblas_i686.sh && bash {project}/tools/install_rust.sh"
+
+[tool.black]
+line-length = 100
+target-version = ['py38', 'py39', 'py310', 'py311', 'py312']
+
+[tool.poetry]
+name = "constants"
+version = "1.8.21"
+description = ""
+authors = [""]
+license = "Apache License 2.0"
+readme = "README.md"
+homepage = ""
+repository = "https://github.com/KuantumBS/constants/"
+documentation = ""
+keywords = []
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering :: Physics",
+]
+#packages = [{ include = "constants", from = "src" }]
+include = ["*.out", "*.yml"]
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.14"
+
+[tool.poetry.group.dev]
+optional = true
+
+[tool.poetry.group.dev.dependencies]
+ipython = "^8.12.0"
+
+[tool.poetry.group.docs]
+optional = true
+
+[tool.poetry.group.docs.dependencies]
+ipython = "^8.10.0"
+
+[tool.poetry.group.tests]
+optional = true
