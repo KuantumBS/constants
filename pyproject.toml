@@ -1,5 +1,3 @@
-from distutils.core import setup
-
 [build-system]
 requires = ["setuptools",
     "tox",
