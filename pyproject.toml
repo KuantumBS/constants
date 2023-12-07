@@ -1,14 +1,3 @@
 [build-system]
 requires = ["setuptools","distutils","distutils.core","functools","configparser"]
 build-backend = "setuptools.build_meta"
-
-[tool.poetry]
-name="constants",
-version="2023.2.0",
-description="The simple way to deal with environment constants.",
-long_description=open("README.rst").read(),
-author="Eugene Van den Bulke",
-author_email="eugene.vandenbulke@gmail.com",
-url="http://github.com/3kwa/constants",
-py_modules=["constants"],
-license="BSD"
