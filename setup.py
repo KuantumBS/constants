@@ -13,8 +13,6 @@ setup(
     license="BSD",
     install_requires=[
         "tox",
-        "distutils",
-        "distutils.core",
         "pytest",
         "functools",
         "unittest",
