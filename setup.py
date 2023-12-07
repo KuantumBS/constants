@@ -15,8 +15,6 @@ setup(
         "tox",
         "pytest",
         "functools",
-        "logging",
-        "warnings",
         "configparser",
     ],
     classifiers=[
